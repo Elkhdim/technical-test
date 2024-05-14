@@ -34,7 +34,7 @@ const MENU_ITEMS: MenuItems = {
   [MenuKeys.MOVIES]: {
     icon: <Inbox sx={{ color: "#fff" }} />,
     text: "Movies",
-    link: "/",
+    link: "/films",
   },
 };
 

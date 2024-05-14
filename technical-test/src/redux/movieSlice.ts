@@ -38,6 +38,23 @@ export const fetchMovieDetails = createAsyncThunk(
   }
 );
 
+export const fetchMoviesByQuery = createAsyncThunk<
+  MoviesApiResponse,
+  { query: string; page: number },
+  { rejectValue: string }
+>("movie/fetchMoviesByQuery", async ({ query, page }, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${BACKEND_API}search-movies?query=${encodeURIComponent(query)}&page=${page}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = (await response.json()) as MoviesApiResponse;
+    return data;
+  } catch (error: any) {
+    return rejectWithValue(error.message);
+  }
+});
+
 const initialState: MovieState = {
   movie: null,
   movies: [],
@@ -77,6 +94,18 @@ const movieSlice = createSlice({
         state.movie = action.payload;
       })
       .addCase(fetchMovieDetails.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload as string;
+      })
+      .addCase(fetchMoviesByQuery.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchMoviesByQuery.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.movies = action.payload.results;
+        state.totalPages = action.payload.total_pages;
+      })
+      .addCase(fetchMoviesByQuery.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload as string;
       });

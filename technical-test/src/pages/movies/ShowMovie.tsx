@@ -20,7 +20,7 @@ function ShowMovie() {
     }
   }, [dispatch, id]);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading") return <Layout> Loading... </Layout>;
   if (status === "failed") return <div>Error: {error}</div>;
 
   if (!movie) return null;
