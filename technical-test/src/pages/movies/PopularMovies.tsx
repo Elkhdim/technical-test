@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  IconButton,
   Box,
   Typography,
   TablePagination,
@@ -34,7 +33,7 @@ const MoviesList: React.FC = () => {
     setPage(0);
   };
 
-  const breadcrumbItems = [{ label: "Movies", path: "/admin" }];
+  const breadcrumbItems = [{ label: "Movies", path: "/films" }];
 
   if (status === "loading") {
     return <Layout> Loading... </Layout>;
@@ -43,7 +42,7 @@ const MoviesList: React.FC = () => {
   if (status === "failed") {
     return <div>Error: {error}</div>;
   }
-
+console.log('movie : ',movies)
   return (
     <Layout>
       <Box sx={{ width: "100%", p: 3 }}>
@@ -57,8 +56,8 @@ const MoviesList: React.FC = () => {
               <TableRow>
                 <TableCell>ID</TableCell>
                 <TableCell>Title</TableCell>
-                <TableCell>Language</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Release date</TableCell>
+                <TableCell>Image</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

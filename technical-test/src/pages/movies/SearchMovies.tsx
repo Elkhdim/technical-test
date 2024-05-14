@@ -30,7 +30,10 @@ const MoviesList: React.FC = () => {
   const query = useQuery();
   const searchQuery = query.get("query") || "";
 
-  const { movies, status, error, totalPages } = useMovies({ page: page + 1, query: searchQuery });
+  const { movies, status, error, totalPages } = useMovies({
+    page: page + 1,
+    query: searchQuery,
+  });
 
   useEffect(() => {
     setPage(0); // Reset to the first page when the query changes
@@ -40,14 +43,14 @@ const MoviesList: React.FC = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const breadcrumbItems = [
-    { label: "Movies", path: "/admin" }
-  ];
+  const breadcrumbItems = [{ label: "Movies", path: "/films" }];
 
   if (status === "loading") {
     return <Layout> Loading... </Layout>;
@@ -71,7 +74,7 @@ const MoviesList: React.FC = () => {
                 <TableCell>ID</TableCell>
                 <TableCell>Title</TableCell>
                 <TableCell>Language</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Image</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

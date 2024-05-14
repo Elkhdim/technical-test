@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 interface MovieRowProps {
   movie: Movie;
 }
+
+
 export default function MovieRow({ movie }: MovieRowProps) {
   return (
     <TableRow
@@ -14,14 +16,19 @@ export default function MovieRow({ movie }: MovieRowProps) {
     >
       <TableCell>{movie.id}</TableCell>
       <TableCell>{movie.title}</TableCell>
-      <TableCell>{movie.original_language}</TableCell>
+      <TableCell>{movie.release_date}</TableCell>
       <TableCell>
         <IconButton
           component={Link}
           to={`/movies/view/${movie.id}`}
-          color="info"
         >
-          View
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+            style={{
+              width: "5%",
+            }}
+          />
         </IconButton>
       </TableCell>
     </TableRow>

@@ -44,7 +44,11 @@ export const fetchMoviesByQuery = createAsyncThunk<
   { rejectValue: string }
 >("movie/fetchMoviesByQuery", async ({ query, page }, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${BACKEND_API}search-movies?query=${encodeURIComponent(query)}&page=${page}`);
+    const response = await fetch(
+      `${BACKEND_API}search-movies?query=${encodeURIComponent(
+        query
+      )}&page=${page}`
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

@@ -9,9 +9,6 @@ import {
   Collapse,
 } from "@mui/material";
 import { ExpandLess, ExpandMore, Inbox } from "@mui/icons-material";
-import GroupIcon from "@mui/icons-material/Group";
-import FormatListNumberedRtlIcon from "@mui/icons-material/FormatListNumberedRtl";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 import { Link as RouterLink } from "react-router-dom";
 
